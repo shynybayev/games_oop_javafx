@@ -21,6 +21,7 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
+    //передвижение объекта фигуры по полю
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
         int index = this.findBy(source);
