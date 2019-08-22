@@ -4,7 +4,6 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * //TODO add comments.
@@ -21,7 +20,6 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    //передвижение объекта фигуры по полю
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
         int index = this.findBy(source);
@@ -45,7 +43,7 @@ public class Logic {
     private int findBy(Cell cell) {
         int rst = -1;
         for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
+            if (this.figures[index] != null && this.figures[index].position().equals(cell)) { 
                 rst = index;
                 break;
             }

@@ -21,7 +21,6 @@ public class BishopBlack implements Figure {
         return this.position;
     }
 
-    //Слон может двигаться в четыре стороны. Эти движения можно описать двумя дельтами +1 -1.
     @Override
     public Cell[] way(Cell source, Cell dest) {
         if (!isDiagonal(source, dest)) {
@@ -30,17 +29,17 @@ public class BishopBlack implements Figure {
             );
         }
 
-        int size = 4;
-        Cell[] steps = new Cell[size];
+        int size = dest.x - source.x;
+        Cell[] steps = new Cell[size]; 
+        Cell cell = source;
         int deltaX = 1;
         int deltaY = 1;
 
-        for (int index = 0; index != size; index++) {
-            dest.x = source.x + deltaX;
-            dest.y = source.y + deltaY;
-            steps[index] =  dest;
+        for (int index = 0; index != size; index++) {   
+            cell = findByCoordinates(cell.x + deltaX, cell.y + deltaY);
+            steps[index] = cell;
         }
-//        return new Cell[] {dest};
+
         return steps;
     }
 
@@ -50,7 +49,21 @@ public class BishopBlack implements Figure {
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        //TODO check diagonal
+        if ((dest.x - source.x) == (dest.y - source.y)) {
+            return true;
+        }
         return false;
+    }
+
+    //метод поиска Cell по координатам
+    public Cell findByCoordinates(int x, int y) {
+       Cell[] cells = Cell.values();
+       Cell cell = position;
+       for (Cell tmp: cells) {
+           if (tmp.x == x & tmp.y == y) {
+               cell = tmp;
+           }
+       }
+       return cell;
     }
 }
