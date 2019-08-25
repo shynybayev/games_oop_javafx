@@ -20,11 +20,16 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) {   //можно ли двигаться или нет
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
+            for (int cellIndex = 0; cellIndex != steps.length; cellIndex++) { //занята ли данная клетка другими
+                if (this.findBy(steps[cellIndex]) != -1) {
+                    throw new IllegalStateException(String.format("The cell is occupied by another one"));
+                }
+            }
             if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
