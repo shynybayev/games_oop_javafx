@@ -68,6 +68,7 @@ public class BishopBlack implements Figure {
        for (Cell tmp: cells) {
            if (tmp.x == x & tmp.y == y) {
                cell = tmp;
+               break;
            }
        }
        return cell;
